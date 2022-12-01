@@ -1,0 +1,55 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion versions.compile_sdk
+    defaultConfig {
+        applicationId "xyz.aprildown.theme.app"
+        minSdkVersion versions.min_sdk
+        targetSdkVersion versions.target_sdk
+        versionCode versions.version_code
+        versionName versions.version_name
+        vectorDrawables.useSupportLibrary = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        disable 'HardcodedText', 'GoogleAppIndexingWarning', 'ContentDescription'
+    }
+
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':theme')
+
+    implementation libs.kotlin_stdlib_jdk7
+
+    implementation libs.androidx_appcompat
+    implementation libs.androidx_preference
+    implementation libs.androidx_constraintlayout
+    implementation libs.androidx_viewpager2
+
+    implementation libs.androidx_core_ktx
+
+    implementation libs.material
+
+    implementation libs.androidx_navigation_fragment
+    implementation libs.androidx_navigation_ui
+
+    debugImplementation libs.leak_cannary
+
+    implementation libs.fast_adapter
+    implementation libs.materialize
+    implementation libs.flexbox
+
+}
